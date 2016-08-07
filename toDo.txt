@@ -1,0 +1,27 @@
+- hello window
+- choose project window
+- add new project window
+- check if project possible to create
+- create folders on disc
+- make folders specification file
+
+- open project
+- choose project from the list
+
+- give windows wanted sizes and places
+- check windows for proper resizing and moving
+- hook windows to atract places
+- make window tabs work
+
+- project file
+- add views
+- name a view
+
+- saving project
+- saving view
+
+- view creator window
+- choosing view function or view tab
+
+- creating actionManager
+- draging view

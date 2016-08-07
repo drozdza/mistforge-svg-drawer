@@ -1,0 +1,30 @@
+.MistForge_SvgEditor_Label{
+    font-size: 14px;
+    font-weight: bold;
+    font-family: Arial,sans-serif;
+}
+.MistForge_SvgEditor_FieldSet{
+
+}
+.MistForge_SvgEditor_FieldSet input,
+.MistForge_SvgEditor_FieldSet select{
+    border: 1px solid red;
+    font-size: 14px;
+    font-weight: bold;
+    color: #333;
+    font-family: Arial,sans-serif;
+    background: white;
+}
+
+.MistForge_SvgEditor_Button{
+    border: 1px solid red;
+    background: orange;
+    color: white;
+    font-weight: bold;
+    font-family:Arial,sans-serif;
+    font-size: 14px;
+    display: inline-block;
+    margin: 0px 2px;
+    padding: 1px 2px;
+    cursor: pointer;
+}

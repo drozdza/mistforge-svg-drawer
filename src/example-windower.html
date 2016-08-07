@@ -1,0 +1,66 @@
+<!doctype HTML>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <script type="text/javascript" src="js/jquery.js"></script>
+    <script type="text/javascript"> MistForge = {Classes:{},Objects:{}}; </script>
+
+    <script type="text/javascript" src="mistforge/windower/Windower.js"></script>
+    <script type="text/javascript" src="mistforge/windower/ActionManager.js"></script>
+    <script type="text/javascript" src="mistforge/windower/MainContainer.js"></script>
+    <script type="text/javascript" src="mistforge/windower/MenuBar.js"></script>
+    <script type="text/javascript" src="mistforge/windower/ContentContainer.js"></script>
+    <script type="text/javascript" src="mistforge/windower/Window.js"></script>
+
+    <link rel="stylesheet" type="text/css" href="mistforge/windower/core_styles.css">
+
+    <script type="text/javascript">
+    $(document).ready(function(){
+        WindowerObject = new MistForge.Classes.Windower.Windower();
+
+        WindowerObject.setMenuBarPosition('bottom','right','horizontal');
+
+        var Content1 = WindowerObject.setNewContent({ name:'SomeWindow', proposedWidth: 300, minimalWidth: 150, proposedHeight: 450 });
+        Content1.putHtml('<span style="color: red; font-size: 30px;">Hello</span><br/>Its a content.');
+
+        var Window1 = WindowerObject.setNewWindow();
+        Window1.addContent(Content1);
+
+
+        var Content2 = WindowerObject.setNewContent({ name:'Window2', proposedWidth: 300, minimalWidth: 100, minimalHeight: 150, proposedHeight: 150 });
+        Content2.putHtml('<span style="color: red; font-size: 30px;">Yep</span><br/>Its a content.');
+
+        var Window2 = WindowerObject.setNewWindow();
+        Window2.addContent(Content2);
+        Window2.moveToCenter();
+
+        var Content3 = WindowerObject.setNewContent({ name:'Window3', proposedWidth: 200, minimalWidth: 100, minimalHeight: 100, proposedHeight: 200 });
+        Content3.putHtml('<span style="color: red; font-size: 30px;">Me, me!</span><br/>Its a content.');
+
+        var Window3 = WindowerObject.setNewWindow();
+        Window3.addContent(Content3);
+
+
+        var Content4 = WindowerObject.setNewContent({ name:'Window4', proposedWidth: 300, minimalWidth: 100, minimalHeight: 150, proposedHeight: 150 });
+        var Content5 = WindowerObject.setNewContent({ name:'Window5', proposedWidth: 300, minimalWidth: 100, minimalHeight: 150, proposedHeight: 150 });
+        var Content6 = WindowerObject.setNewContent({ name:'Win6', proposedWidth: 300, minimalWidth: 100, minimalHeight: 150, proposedHeight: 150 });
+
+        Content4.putHtml('<span style="color: red; font-size: 30px;">4 Wins!</span><br/>Its a content.');
+        Content5.putHtml('<span style="color: red; font-size: 30px;">The Best is 5</span><br/>Its a content.');
+        Content6.putHtml('<span style="color: red; font-size: 30px;">6 its a third part.</span><br/>Its a content.');
+
+        var Window4 = WindowerObject.setNewWindow();
+        Window4.addContent(Content4);
+        Window4.addContent(Content5);
+        Window4.addContent(Content6);
+        Window4.moveToCenter();
+
+
+
+    });
+    </script>
+
+</head>
+<body>
+</body>
+</html>

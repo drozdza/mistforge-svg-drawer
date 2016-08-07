@@ -1,0 +1,22 @@
+containers:
+    web:
+        image: wiosna/web-dev
+        dockerfile: ../docker-images/web
+        run:
+            volume: [".:/var/www"]
+            net: host
+            workdir: /var/www
+            detach: true
+    web_it:
+        image: wiosna/web-dev
+        dockerfile: ../docker-images/web
+        run:
+            volume: [".:/var/www", "/data/composer:/root/.composer"]
+            net: host
+            workdir: /var/www
+            interactive: true
+            tty: true
+            rm: true
+            cmd: ["-c", "bash"]
+groups:
+    default: ["web"]
