@@ -1,6 +1,6 @@
-- hello window
-- choose project window
-- add new project window
+x hello window
+x choose project window
+x add new project window
 - check if project possible to create
 - create folders on disc
 - make folders specification file

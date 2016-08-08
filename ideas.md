@@ -127,4 +127,47 @@ Layer Cases:
 
 Pomysł na Layery:
  - kilka poziomów layerów: [0,2,1,2] [ position on view , object in position , group , in_group ]
- 
+
+
+
+--------------------------------------------------------------------------------
+
+4 Typy plików wejściowych:
+- Projekt
+    - Zawiera listy Widoków, Modeli, i Animacji,
+    - Pilnuje które widoki są włączone, jakie są ustawienia okien itd itp.
+    - Jest praktycznie nie potrzebny dla Drawera
+- Widok
+    - Tożsamy z wyświetlanym Canvasem (lub innym medium)
+    - Zawiera tablicę Pozycji lub funkcję przydzielania Pozycji
+    - Zawiera listę Obiektów przydzielonych do Pozycji
+    - Dla każdego Obiektu trzyma listę używanych przez niego Modeli
+    - Dla każdego Obiektu trzyma listy Animacji dla każdej Sekwencji Animacji
+- Model
+    - Trzyma szczątkowe informacje z których składa się Obiekt
+        - Grupy
+            - Punkty
+        - Linie
+        - Obrazy
+- Animacja
+    - Trzyma szczątkowe informacje z których składa się Sekwencja Animacji
+        - Animacje i zmiany wszystkiego
+
+
+
+Projekt
+    - Widok
+        - Funckja Pozycji lub Tablica Pozycji
+        - Pozycja
+            - Obiekt
+                - Modele
+                    - Grupy
+                        - Punkty lokalne Modelu
+                        - Punkty globalne Obiektu
+            - Sekwencje Animacji
+                - Animacje
+
+
+
+Pozycja ma jedno defaultowe miejsce na Obiekt
+    -> Modele mogą dodawać dodatkowe miejsca na obiekty. Np. Skrzynia dodaje miejsce na obiekt "na skrzyni" na który możemy dodać wiele rzeczy
