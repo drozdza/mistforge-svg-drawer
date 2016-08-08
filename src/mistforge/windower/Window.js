@@ -3,7 +3,7 @@ MistForge.Classes.Windower.Window = function(i){
     this.iWindow = 0;
     this.ContentTab = {};
     this.iContentTab = 0;
-    this.currentTab = false
+    this.currentTab = false;
 
     this.positionX = 0;
     this.positionY = 0;
@@ -106,6 +106,10 @@ MistForge.Classes.Windower.Window = function(i){
         var Id2 = '#MistForge_Windower_Window_TabNames_'+this.iWindow;
         $(Id2).html(tabNamesHtml);
 
+        if(this.currentTab!== false && typeof this.ContentTab[this.currentTab] != 'undefined'){
+            firstTab = this.currentTab;
+        }
+
         this.openTab(firstTab);
     }
 
@@ -148,7 +152,6 @@ MistForge.Classes.Windower.Window = function(i){
 
 
     this.openTab = function(iTab){
-        console.log('openTab: '+iTab);
 
         $('#MistForge_Windower_Window_'+this.iWindow+' .MistForge_Windower_Window_TabContent').hide();
         $('#MistForge_Windower_Window_'+this.iWindow+' .MistForge_Windower_Window_TabContent_'+iTab).show();

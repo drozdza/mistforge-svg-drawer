@@ -27,4 +27,16 @@
     margin: 0px 2px;
     padding: 1px 2px;
     cursor: pointer;
+
+    -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none;   /* Chrome/Safari/Opera */
+    -khtml-user-select: none;    /* Konqueror */
+    -moz-user-select: none;      /* Firefox */
+    -ms-user-select: none;       /* Internet Explorer/Edge */
+    user-select: none;
+
+}
+
+.MistForge_SvgEditor_Button.disabled {
+    background: grey;
 }

@@ -54,8 +54,10 @@ html,body { background: #306; margin: 0px; height: 100%; min-height: 100%; width
     z-index: 999;
 }
 
-.MistForge_Windower_Window_Content{
-    height: 100%;
+.MistForge_Windower_Window_Content,
+.MistForge_Windower_Window_TabContent{
+    height: calc(100% -10px);
+    overflow: auto;
 }
 
 .MistForge_Windower_MarginedContent{

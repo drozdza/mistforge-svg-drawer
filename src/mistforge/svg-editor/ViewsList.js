@@ -2,7 +2,6 @@ MistForge.Classes.SvgEditor.ViewsList = function(){
 
     this.myContent = false;
 
-
     this.init = function(){
         this.myContent = MistForge.Objects.Windower.setNewContent({
             name:'ViewsList',
@@ -23,31 +22,94 @@ MistForge.Classes.SvgEditor.ViewsList = function(){
     }
 
     this.buildWindow = function(){
-        var html = 'Ello:<br/>Ollo';
+        var html = '';
 
         var ViewsTab = MistForge.Objects.SvgDrawer.Project.ViewsTab;
 
         for(var i in ViewsTab){
-            html +=i+' '+ViewsTab[i]+'<br>';
+            html += '<div class="MistForge_SvgEditor_FieldSet">';
+                html += '<div class="MistForge_SvgEditor_Label">'+i+'</div>';
+                html += '<div class="MistForge_SvgEditor_Button MistForge_SvgEditor_ViewsList_OpenWindow';
+                    if(typeof MistForge.Objects.SvgEditor.ViewWindowTab[i] != 'undefined') html += ' disabled';
+                html += '" viewName="'+i+'">Window</div>';
+                html += '<div class="MistForge_SvgEditor_Button MistForge_SvgEditor_ViewsList_OpenSettings';
+                    if(typeof MistForge.Objects.SvgEditor.ViewSettingsTab[i] != 'undefined') html += ' disabled';
+                html += '" viewName="'+i+'">Settings</div>';
+                html += '<div class="MistForge_SvgEditor_Button MistForge_SvgEditor_ViewsList_OpenModels';
+                    if(typeof MistForge.Objects.SvgEditor.ModelsListTab[i] != 'undefined') html += ' disabled';
+                html += '" viewName="'+i+'">Models</div>';
+                html += '<div class="MistForge_SvgEditor_Button MistForge_SvgEditor_ViewsList_OpenActions';
+                    if(typeof MistForge.Objects.SvgEditor.ActionsListTab[i] != 'undefined') html += ' disabled';
+                html += '" viewName="'+i+'">Actions</div>';
+            html += '</div>';
+            // html +=i+' '+ViewsTab[i]+'<br>';
         }
 
         this.myContent.putHtml(html);
     }
 
     this.buildActions = function(){
-        // $('.MistForge_SvgEditor_ViewsChooser').on('click','#MistForge_SvgEditor_ViewsChooser_OpenView_Button',function(){
-        //     MistForge.Objects.SvgEditor.ViewsChooser.click_openView();
-        // });
+         $('.MistForge_SvgEditor_ViewsList').on('click','.MistForge_SvgEditor_ViewsList_OpenWindow',function(){
+             MistForge.Objects.SvgEditor.ViewsList.click_openWindow($(this).attr('viewName'));
+         });
+         $('.MistForge_SvgEditor_ViewsList').on('click','.MistForge_SvgEditor_ViewsList_OpenSettings',function(){
+             MistForge.Objects.SvgEditor.ViewsList.click_openSettings($(this).attr('viewName'));
+         });
+         $('.MistForge_SvgEditor_ViewsList').on('click','.MistForge_SvgEditor_ViewsList_OpenModels',function(){
+             MistForge.Objects.SvgEditor.ViewsList.click_openModels($(this).attr('viewName'));
+         });
+         $('.MistForge_SvgEditor_ViewsList').on('click','.MistForge_SvgEditor_ViewsList_OpenActions',function(){
+             MistForge.Objects.SvgEditor.ViewsList.click_openActions($(this).attr('viewName'));
+         });
     }
 
-    // this.click_openView = function(){
-    //     var viewName = $('#MistForge_SvgEditor_ViewsChooser_OpenView').val();
-    //
-    //     if(viewName.length == 0) return false;
-    //
-    //     this.openView(viewName);
-    // }
+    this.click_openWindow = function(viewName){
+        console.log('View:openWindow: '+viewName);
 
+        if(typeof MistForge.Objects.SvgEditor.ViewWindowTab[viewName] == 'undefined'){
+            MistForge.Objects.SvgEditor.new_ViewWindow(viewName);
+        } else {
+            MistForge.Objects.SvgEditor.ViewWindowTab[viewName].destruct();
+        }
+
+        this.buildWindow();
+    }
+
+    this.click_openSettings = function(viewName){
+        console.log('View:openSettings: '+viewName);
+
+        if(typeof MistForge.Objects.SvgEditor.ViewSettingsTab[viewName] == 'undefined'){
+            MistForge.Objects.SvgEditor.new_ViewSettings(viewName);
+        } else {
+            MistForge.Objects.SvgEditor.ViewSettingsTab[viewName].destruct();
+        }
+
+        this.buildWindow();
+    }
+
+    this.click_openModels = function(viewName){
+        console.log('View:openModels: '+viewName);
+
+        if(typeof MistForge.Objects.SvgEditor.ModelsListTab[viewName] == 'undefined'){
+            MistForge.Objects.SvgEditor.new_ModelsList(viewName);
+        } else {
+            MistForge.Objects.SvgEditor.ModelsListTab[viewName].destruct();
+        }
+
+        this.buildWindow();
+    }
+
+    this.click_openActions = function(viewName){
+        console.log('View:openActions: '+viewName);
+
+        if(typeof MistForge.Objects.SvgEditor.ActionsListTab[viewName] == 'undefined'){
+            MistForge.Objects.SvgEditor.new_ActionsList(viewName);
+        } else {
+            MistForge.Objects.SvgEditor.ActionsListTab[viewName].destruct();
+        }
+
+        this.buildWindow();
+    }
 
 
     {   // Constructor

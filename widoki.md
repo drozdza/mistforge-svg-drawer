@@ -1,17 +1,18 @@
 
 
 
+ProjectChooser - Wybieramy Projekt/Tworzymy nowy Projekt
 
-1. Wybieramy Projekt/Tworzymy nowy Projekt
 
-2. Dodajemy nowe Widoki do Projektu / Tworzymy Widoki i dodajemy do Projektu
+ViewChooser - Dodajemy nowe Widoki do Projektu / Tworzymy Widoki i dodajemy do Projektu
 
-3. Lista Widoków w Projekcie / Usuwanie widoków z projektu / Wyświetlanie/chowanie okien Widoku
+ViewList - Lista Widoków w Projekcie / Usuwanie widoków z projektu / Wyświetlanie/chowanie okien Widoku
 
-4. Widok - okno z Widokiem
 
-5. Widok - okno z ustawieniami / Defaultowe wielkości / Typ funkcji Pozycji lub tablica Pozycji
+ViewWindow - Widok - okno z Widokiem
 
-6. Widok - lista Modeli / dodawanie Modeli / Pozycje i Grupy Modeli / Usuwanie Modeli
+ViewSettings - Widok - okno z ustawieniami / Defaultowe wielkości / Typ funkcji Pozycji lub tablica Pozycji
 
-7. Widok - lista Akcji
+ModelList- Widok - lista Modeli / dodawanie Modeli / Pozycje i Grupy Modeli / Usuwanie Modeli
+
+ActionList - Widok - lista Akcji
