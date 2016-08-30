@@ -134,9 +134,10 @@ Pomysł na Layery:
 
 4 Typy plików wejściowych:
 - Projekt
-    - Zawiera listy Widoków, Modeli, i Animacji,
+    - Zawiera listy Widoków, Modeli, i Animacji, [Nie, nie zawiera]
     - Pilnuje które widoki są włączone, jakie są ustawienia okien itd itp.
     - Jest praktycznie nie potrzebny dla Drawera
+    - Podpina widoki pod okna
 - Widok
     - Tożsamy z wyświetlanym Canvasem (lub innym medium)
     - Zawiera tablicę Pozycji lub funkcję przydzielania Pozycji
