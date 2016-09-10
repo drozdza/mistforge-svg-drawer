@@ -18,6 +18,12 @@ MistForge.Classes.SvgDrawer.SvgDrawer = function(){
         this.Project.setProject(projectData);
     }
 
+    this.setProjectByName = function(projectName){
+        this.Project = new MistForge.Classes.SvgDrawer.Project();
+        this.Project.setProject({projectName: projectName});
+    }
+
+
     this.setView = function(viewData){
         this.Project.setView(viewData);
     }

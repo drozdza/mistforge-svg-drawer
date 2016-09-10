@@ -26,12 +26,9 @@ MistForge.Classes.SvgDrawer.Project = function(){
     }
 
     this.setProject = function(projectData){
-
-
         this.projectName = projectData.projectName;
         this.getFilesLists();
     }
-
 
     this.setView = function(viewData){
         var name = viewData.viewName;

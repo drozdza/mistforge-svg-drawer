@@ -26,6 +26,14 @@
 
             var Drawer = new MistForge.Classes.SvgDrawer.SvgDrawer();
 
+            var projectName = 'project1';
+
+
+            Drawer.setProjectByName(projectName);
+
+            Ajaxier.ask('viewdata',{projectName:projectName, viewName: 'view1'});
+            Drawer.setView();
+
         });
         </script>
 
