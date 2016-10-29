@@ -1,0 +1,42 @@
+<!doctype html>
+<html>
+<head>
+    <script type="text/javascript">
+$(document).ready(function(){
+    var Drawer = new MistForge.Classes.SvgDrawer.SvgDrawer();
+
+    // PROJECT:
+    var P = Drawer.setProject('projectName');
+
+    Drawer.project('projectName').loadProjectFromJSON(projectJSON);
+    P.loadProjectFromJSON(projectJSON);
+    projectJSON = P.saveProject();
+
+
+    // VIEW:
+    var V = P.addView('viewName','viewContainer');
+    V = Drawer.view('viewName');
+
+    V.geometry_setFunction(function(){});
+
+    V.geometry_setTable();
+    V.geometry_addTablePoint();
+
+    var VP = V.geometry_findNearestPoint(x,y);
+    V.geometry_removeTablePoint(VP);
+
+    V.setCenter(x,y);
+    V.resize();
+    V.draw();
+
+
+    var M = P.setModel('lapa');
+
+
+
+});
+    </script>
+</head>
+<body>
+</body>
+</html>
