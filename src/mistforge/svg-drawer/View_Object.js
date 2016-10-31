@@ -21,3 +21,15 @@ MistForge.Classes.SvgDrawer.View.prototype.addModelToObject = function(modelName
     var O = this.ObjectsTab[ this.currentObject ];
     O.ModelsTab[ modelName ] = false;
 }
+
+MistForge.Classes.SvgDrawer.View.prototype.getObjectPosObj = function(objectName){
+    var O = this.ObjectsTab[ objectName ];
+
+    // jeśli mamy tablicę geometrii:
+    var G = this.geoTab[ O.geoId ];
+    return posObj = {x:G.x, y:G.y, z:G.z, q:G.q};
+    // ....
+    // jeśli na niczym nie leży
+
+
+}

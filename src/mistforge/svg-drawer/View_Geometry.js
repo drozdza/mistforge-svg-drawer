@@ -9,7 +9,7 @@ MistForge.Classes.SvgDrawer.View.prototype.geometry_setTable = function(){
 }
 MistForge.Classes.SvgDrawer.View.prototype.geometry_addTablePoint = function(x,y,pointData){
     var geoId = x+'_'+y;
-    this.geoTab[ geoId ]= {x:x, y:y, D:pointData };
+    this.geoTab[ geoId ]= {x:x, y:y, q:0, z:1, D:pointData };
     this.currentGeoId = geoId;
 }
 MistForge.Classes.SvgDrawer.View.prototype.geometry_getCurrentPoint = function(){

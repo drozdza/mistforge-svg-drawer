@@ -54,7 +54,8 @@ $(document).ready(function(){
     V.addObjectToPoint(VP);
 
     var M = P.setModel('lapa');
-
+    V.addModelToObject(M.getName());
+    
     M.setGroup('groupA');
 
     M.setLine();
@@ -66,7 +67,6 @@ $(document).ready(function(){
     M.addPointToLine('L');
     M.closeLine();
 
-    V.addModelToObject(M.geName());
     V.draw();
 });
     </script>

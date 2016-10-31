@@ -11,21 +11,8 @@ MistForge.Classes.SvgDrawer.Project = function(projectName){
     this.ViewsTab = {};
     this.ModelsTab = {};
 
-    // this.getFilesLists = function(){
-    //     this.FilesLists = {
-    //         Views: {},
-    //         Models: {},
-    //         Animations: {}
-    //     };
-    //
-    //     var AjaxAnswer = MistForge.Objects.Ajaxier.ask('projectFileLists',{projectName: this.projectName});
-    //
-    //     this.FilesLists.Views = AjaxAnswer.Views;
-    //     this.FilesLists.Models = AjaxAnswer.Models;
-    //     this.FilesLists.Animations = AjaxAnswer.Animations;
-    //
-    //     // ....
-    // }
+    this.currentView = false;
+    this.currentMode = false;
 
     this.loadProjectFromJSON = function(projectJSON){
         this.projectData = cloneObj(projectJSON);
@@ -44,10 +31,12 @@ MistForge.Classes.SvgDrawer.Project = function(projectName){
 
     this.setView = function(viewName){
         this.ViewsTab[ viewName ] = new MistForge.Classes.SvgDrawer.View(viewName);
+        this.currentView = viewName;
         return this.ViewsTab[ viewName ];
     }
     this.setModel = function(modelName){
         this.ModelsTab[ modelName ] = new MistForge.Classes.SvgDrawer.Model(modelName);
+        this.currentModel = modelName;
         return this.ModelsTab[ modelName ];
 
     }
