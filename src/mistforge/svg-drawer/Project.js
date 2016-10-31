@@ -1,42 +1,61 @@
-MistForge.Classes.SvgDrawer.Project = function(){
+MistForge.Classes.SvgDrawer.Project = function(projectName){
+
+    this.projectName = false;
+    this.projectData = {};
 
     this.FilesLists = {
         Views: {},
         Models: {},
         Animations: {}
     };
-    this.projectName = false;
-
     this.ViewsTab = {};
+    this.ModelsTab = {};
 
-    this.getFilesLists = function(){
-        this.FilesLists = {
-            Views: {},
-            Models: {},
-            Animations: {}
-        };
+    // this.getFilesLists = function(){
+    //     this.FilesLists = {
+    //         Views: {},
+    //         Models: {},
+    //         Animations: {}
+    //     };
+    //
+    //     var AjaxAnswer = MistForge.Objects.Ajaxier.ask('projectFileLists',{projectName: this.projectName});
+    //
+    //     this.FilesLists.Views = AjaxAnswer.Views;
+    //     this.FilesLists.Models = AjaxAnswer.Models;
+    //     this.FilesLists.Animations = AjaxAnswer.Animations;
+    //
+    //     // ....
+    // }
 
-        var AjaxAnswer = MistForge.Objects.Ajaxier.ask('projectFileLists',{projectName: this.projectName});
+    this.loadProjectFromJSON = function(projectJSON){
+        this.projectData = cloneObj(projectJSON);
+        if(projectJSON.ViewsTab)
+            this.ViewsTab = cloneObj(projectJSON.ViewsTab);
+        // ...
+    }
 
-        this.FilesLists.Views = AjaxAnswer.Views;
-        this.FilesLists.Models = AjaxAnswer.Models;
-        this.FilesLists.Animations = AjaxAnswer.Animations;
+    this.saveProject = function(){
+        var projectJSON = cloneObj(this.projectData);
+        projectJSON.ViewsTab = cloneObj(this.ViewsTab);
 
         // ....
+        return projectJSON;
     }
 
-    this.setProject = function(projectData){
-        this.projectName = projectData.projectName;
-        this.getFilesLists();
+    this.setView = function(viewName){
+        this.ViewsTab[ viewName ] = new MistForge.Classes.SvgDrawer.View(viewName);
+        return this.ViewsTab[ viewName ];
+    }
+    this.setModel = function(modelName){
+        this.ModelsTab[ modelName ] = new MistForge.Classes.SvgDrawer.Model(modelName);
+        return this.ModelsTab[ modelName ];
+
     }
 
-    this.setView = function(viewData){
-        var name = viewData.viewName;
-        this.ViewsTab[ name ] = new MistForge.Classes.SvgDrawer.View(viewData);
+    this.init = function(projectName){
+        this.projectName = projectName;
     }
-
-    this.init = function(){}
     {   // Constructor
-        this.init();
+        this.init(projectName);
     }
 }

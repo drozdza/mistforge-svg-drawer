@@ -1,12 +1,30 @@
 <!doctype html>
 <html>
 <head>
+    <script type="text/javascript" src="js/jquery.js"></script>
+
+    <script type="text/javascript" src="mistforge/helper/Helper.js"></script>
+    <script type="text/javascript" src="mistforge/helper/Ajaxier.js"></script>
+    <script type="text/javascript" src="mistforge/helper/Errorer.js"></script>
+
+    <script type="text/javascript" src="mistforge/svg-drawer/SvgDrawer.js"></script>
+    <script type="text/javascript" src="mistforge/svg-drawer/Project.js"></script>
+    <script type="text/javascript" src="mistforge/svg-drawer/View.js"></script>
+    <script type="text/javascript" src="mistforge/svg-drawer/View_Object.js"></script>
+    <script type="text/javascript" src="mistforge/svg-drawer/View_Geometry.js"></script>
+    <script type="text/javascript" src="mistforge/svg-drawer/Model.js"></script>
+    <script type="text/javascript" src="mistforge/svg-drawer/Model_Group.js"></script>
+    <script type="text/javascript" src="mistforge/svg-drawer/Model_Point.js"></script>
+    <script type="text/javascript" src="mistforge/svg-drawer/Model_Line.js"></script>
+    <link rel="stylesheet" type="text/css" href="mistforge/svg-drawer/core_styles.css">
+
     <script type="text/javascript">
 $(document).ready(function(){
     var Drawer = new MistForge.Classes.SvgDrawer.SvgDrawer();
 
     // PROJECT:
     var P = Drawer.setProject('projectName');
+    var projectJSON={};
 
     Drawer.project('projectName').loadProjectFromJSON(projectJSON);
     P.loadProjectFromJSON(projectJSON);
@@ -14,29 +32,47 @@ $(document).ready(function(){
 
 
     // VIEW:
-    var V = P.addView('viewName','viewContainer');
+    var V = P.setView('viewName','#viewContainer');
     V = Drawer.view('viewName');
 
-    V.geometry_setFunction(function(){});
+    V.geometry_setFunction('funcName', function(){});
 
     V.geometry_setTable();
-    V.geometry_addTablePoint();
+    V.geometry_addTablePoint(50,50,{});
 
-    var VP = V.geometry_findNearestPoint(x,y);
+    var VP = V.geometry_findNearestPoint(x=20, y=30);
     V.geometry_removeTablePoint(VP);
 
     V.setCenter(x,y);
+    V.zoom(1);
     V.resize();
     V.draw();
 
+    V.setObject('khtulu');
+    V.geometry_addTablePoint(0,0,{});
+    VP = V.geometry_getCurrentPoint();
+    V.addObjectToPoint(VP);
 
     var M = P.setModel('lapa');
 
+    M.setGroup('groupA');
 
+    M.setLine();
+    M.setPoint(false,{x:30,y:30,T:'raw'});
+    M.addPointToLine('L');
+    M.setPoint(false,{x:100,y:30,T:'raw'});
+    M.addPointToLine('L');
+    M.setPoint(false,{x:60,y:60,T:'raw'});
+    M.addPointToLine('L');
+    M.closeLine();
 
+    V.addModelToObject(M.geName());
+    V.draw();
 });
     </script>
 </head>
-<body>
+<body style="margin: 0px; background: #306;">
+    <canvas id="#viewContainer" style="width: 700px; height: 300px; background: orange; display: block; margin: 10px auto;"></canvas>
+
 </body>
 </html>
