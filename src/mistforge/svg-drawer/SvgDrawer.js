@@ -36,13 +36,16 @@ MistForge.Classes.SvgDrawer.SvgDrawer = function(){
             return false;
         }
 
-        for(var v in this.Project.ViewsTab)
-            if(v == searchViewName)
-                return this.Project.ViewsTab[v];
+        return this.Project.view(searchViewName);
+    }
 
-        MisrForge.Objects.Errorer.E('SvgDrawer.view('+searchViewName+'): not found.');
-        return false;
+    this.model = function(searchModelName){
+        if(this.Project === false){
+            MistForge.Objects.Errorer.E('SvgDrawer.model('+searchModelName+'): Project not set.')
+            return false;
+        }
 
+        return this.Project.model(searchModelName);
     }
 
 }

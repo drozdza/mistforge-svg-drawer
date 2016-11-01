@@ -27,6 +27,15 @@ MistForge.Classes.SvgDrawer.Model = function(modelName,Project){
         if(objectEmpty(this.usedInObjects[view]))
             delete(this.usedInObjects[view]);
     }
+    this.updateObjects = function(){
+        for(var v in this.usedInObjects){
+            var V = this.Project.view(v);
+            for(var o in this.usedInObjects[v])
+                V.updateModelInObject(o,this);
+        }
+    }
+
+
 
     this.init = function(modelName,Project){
         this.modelName = modelName;

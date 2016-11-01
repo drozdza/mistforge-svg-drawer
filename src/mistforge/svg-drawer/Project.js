@@ -41,6 +41,26 @@ MistForge.Classes.SvgDrawer.Project = function(projectName){
 
     }
 
+
+    this.view = function(searchViewName){
+        for(var v in this.ViewsTab)
+            if(v == searchViewName)
+                return this.ViewsTab[v];
+
+        MisrForge.Objects.Errorer.E('SvgDrawer.Project.view('+searchViewName+'): not found.');
+        return false;
+    }
+
+    this.model = function(searchModelName){
+        for(var v in this.ModelsTab)
+            if(v == searchModelName)
+                return this.ModelsTab[v];
+
+        MisrForge.Objects.Errorer.E('SvgDrawer.Project.model('+searchModelName+'): not found.');
+        return false;
+    }
+
+
     this.init = function(projectName){
         this.projectName = projectName;
     }

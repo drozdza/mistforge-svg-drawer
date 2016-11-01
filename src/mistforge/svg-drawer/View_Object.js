@@ -37,11 +37,17 @@ MistForge.Classes.SvgDrawer.View.prototype.getObjectPosObj = function(objectName
     // jeśli na niczym nie leży
 }
 
-MistForge.Classes.SvgDrawer.View.prototype.updateModelInObject = function(Model){
+MistForge.Classes.SvgDrawer.View.prototype.updateModelInObject = function(Model, objectName = false){
+    var O;
+    if(objectName)  O = this.ObjectsTab[ objectName ];
+        else        O = this.ObjectsTab[ this.currentObject ];
+
     console.log(Model);
 
-
-
 }
+MistForge.Classes.SvgDrawer.View.prototype.deleteModelFromObject = function(Model, objectName = false){
+    // ....
+}
+
 // MistForge.Classes.SvgDrawer.View.prototype.
 // MistForge.Classes.SvgDrawer.View.prototype.
