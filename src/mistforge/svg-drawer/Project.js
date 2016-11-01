@@ -29,13 +29,13 @@ MistForge.Classes.SvgDrawer.Project = function(projectName){
         return projectJSON;
     }
 
-    this.setView = function(viewName){
-        this.ViewsTab[ viewName ] = new MistForge.Classes.SvgDrawer.View(viewName);
+    this.setView = function(viewName, viewCont){
+        this.ViewsTab[ viewName ] = new MistForge.Classes.SvgDrawer.View(viewName,viewCont,this);
         this.currentView = viewName;
         return this.ViewsTab[ viewName ];
     }
     this.setModel = function(modelName){
-        this.ModelsTab[ modelName ] = new MistForge.Classes.SvgDrawer.Model(modelName);
+        this.ModelsTab[ modelName ] = new MistForge.Classes.SvgDrawer.Model(modelName,this);
         this.currentModel = modelName;
         return this.ModelsTab[ modelName ];
 

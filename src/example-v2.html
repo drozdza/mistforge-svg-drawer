@@ -51,11 +51,11 @@ $(document).ready(function(){
     V.setObject('khtulu');
     V.geometry_addTablePoint(0,0,{});
     VP = V.geometry_getCurrentPoint();
-    V.addObjectToPoint(VP);
+    V.addObjectToGeoPoint(VP);
 
     var M = P.setModel('lapa');
     V.addModelToObject(M.getName());
-    
+
     M.setGroup('groupA');
 
     M.setLine();

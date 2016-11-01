@@ -1,10 +1,13 @@
-MistForge.Classes.SvgDrawer.Model = function(modelName){
+MistForge.Classes.SvgDrawer.Model = function(modelName,Project){
 
     this.modelName = false;
+    this.Project = false;
 
     this.GroupsTab = {iGroup:0};
     this.LinesTab = {iLine:0};
     this.PointsTab = {iPoint:0};
+
+    this.usedInObjects = {};
 
     this.currentGroup = false;
     this.currentLine = false;
@@ -14,8 +17,20 @@ MistForge.Classes.SvgDrawer.Model = function(modelName){
         return this.modelName;
     }
 
-    this.init = function(modelName){
-        this.modelName = modelName;
+    this.setObjectUse = function(view,object){
+        if(typeof this.usedInObjects[view] == 'undefined')
+            this.usedInObjects[view] = {};
+        this.usedInObjects[view][object] = true;
     }
-    this.init(modelName);
+    this.unsetObjectUse = function(view,object){
+        delete(this.usedInObjects[view][object]);
+        if(objectEmpty(this.usedInObjects[view]))
+            delete(this.usedInObjects[view]);
+    }
+
+    this.init = function(modelName,Project){
+        this.modelName = modelName;
+        this.Project = Project;
+    }
+    this.init(modelName,Project);
 }
