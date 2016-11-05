@@ -3,15 +3,19 @@ MistForge.Classes.SvgDrawer.Model = function(modelName,Project){
     this.modelName = false;
     this.Project = false;
 
-    this.GroupsTab = {iGroup:0};
-    this.LinesTab = {iLine:0};
-    this.PointsTab = {iPoint:0};
+    this.GroupsTab = {};
+    this.iGroup = 0;
+    this.LinesTab = {};
+    this.iLine = 0;
+    this.PointsTab = {};
+    this.iPoint = 0;
 
     this.usedInObjects = {};
 
     this.currentGroup = false;
-    this.currentLine = false;
     this.currentPoint = false;
+    this.currentLine = false;
+    this.currentSubLine = false;
 
     this.getName = function(){
         return this.modelName;
@@ -31,7 +35,7 @@ MistForge.Classes.SvgDrawer.Model = function(modelName,Project){
         for(var v in this.usedInObjects){
             var V = this.Project.view(v);
             for(var o in this.usedInObjects[v])
-                V.updateModelInObject(o,this);
+                V.updateModelInObject(this,o);
         }
     }
 

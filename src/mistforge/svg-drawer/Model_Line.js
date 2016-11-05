@@ -1,7 +1,7 @@
 
 MistForge.Classes.SvgDrawer.Model.prototype.setLine = function(lineName = false){
     if(lineName === false)
-        lineName = this.LinesTab.iLine++;
+        lineName = this.iLine++;
 
     var Line = {
         N: lineName,
@@ -16,24 +16,32 @@ MistForge.Classes.SvgDrawer.Model.prototype.switchLine = function(lineName){
     this.currentLine = lineName;
 }
 
+MistForge.Classes.SvgDrawer.Model.prototype.startLineAtPoint = function(){
+    var L = this.LinesTab[ this.currentLine ];
+    var pointName = this.currentPoint;
+
+    var sli = L.subLines.length;
+    L.subLines[ sli ] = {
+        M: pointName,
+        D:[],
+        Z:false,
+    };
+
+    this.currentSubLine = sli;
+}
+
 MistForge.Classes.SvgDrawer.Model.prototype.addPointToLine = function(lineType){
     var L = this.LinesTab[ this.currentLine ];
     var pointName = this.currentPoint;
 
-    var sLi = 0;
-    if(L.subLines.length == 0){
-        L.subLines[sLi] = {Z:false, T:[]};
-    }else{
-        sLi = L.subLines.length -1;
-    }
-    var SL = L.subLines[sLi];
+    var SL = L.subLines[ this.currentSubLine ];
 
-    SL.T[ SL.T.length ]={
+    SL.D[ SL.D.length ]={
         T: lineType,
         P: pointName,
     };
 
-    console.log(L);
+    // console.log(L);
 }
 
 MistForge.Classes.SvgDrawer.Model.prototype.closeLine = function(){

@@ -1,7 +1,7 @@
 
 MistForge.Classes.SvgDrawer.Model.prototype.setPoint = function(pointName = false,pointData){
     if(pointName === false)
-        pointName = this.PointsTab.iPoint++;
+        pointName = this.iPoint++;
 
     if(pointData.T=='raw'){
         var groupPosObj = this.getGroupPosObj(this.currentGroup);
@@ -10,6 +10,7 @@ MistForge.Classes.SvgDrawer.Model.prototype.setPoint = function(pointName = fals
 
     var Point = pointRadObj;
     Point.N = pointName;
+    Point.G = this.currentGroup;
     Point.C = {}; // counted positions
     Point.C.x = pointData.x;
     Point.C.y = pointData.y;

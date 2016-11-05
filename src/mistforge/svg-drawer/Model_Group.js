@@ -3,6 +3,9 @@ MistForge.Classes.SvgDrawer.Model.prototype.setGroup = function(groupName){
     this.GroupsTab[groupName] = {
         N:groupName,
         Parent:false, //parentGroup
+        r:0,
+        q:0,
+        z:1,
     };
     this.currentGroup = groupName;
 }

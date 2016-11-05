@@ -46,33 +46,34 @@ $(document).ready(function(){
     V.setCenter(x,y);
     V.zoom(1);
     V.resize();
-    V.draw();
+    // V.draw();
 
-    V.setObject('khtulu');
+    V.setObject('chtulu');
     V.geometry_addTablePoint(0,0,{});
     VP = V.geometry_getCurrentPoint();
     V.addObjectToGeoPoint(VP);
 
-    var M = P.setModel('lapa');
+    var M = P.setModel('triangle');
     V.addModelToObject(M.getName());
 
     M.setGroup('groupA');
 
     M.setLine();
     M.setPoint(false,{x:30,y:30,T:'raw'});
-    M.addPointToLine('L');
+    M.startLineAtPoint();
     M.setPoint(false,{x:100,y:30,T:'raw'});
     M.addPointToLine('L');
     M.setPoint(false,{x:60,y:60,T:'raw'});
     M.addPointToLine('L');
     M.closeLine();
+    M.updateObjects();
 
     V.draw();
 });
     </script>
 </head>
 <body style="margin: 0px; background: #306;">
-    <canvas id="#viewContainer" style="width: 700px; height: 300px; background: orange; display: block; margin: 10px auto;"></canvas>
+    <canvas id="viewContainer" style="width: 700px; height: 300px; background: orange; display: block; margin: 10px auto;"></canvas>
 
 </body>
 </html>
