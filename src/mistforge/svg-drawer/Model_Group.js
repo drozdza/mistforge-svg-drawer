@@ -1,5 +1,6 @@
 
 MistForge.Classes.SvgDrawer.Model.prototype.setGroup = function(groupName){
+    console.log('Model.setGroup("'+groupName+'")');
     this.GroupsTab[groupName] = {
         N:groupName,
         Parent:false, //parentGroup
@@ -10,10 +11,12 @@ MistForge.Classes.SvgDrawer.Model.prototype.setGroup = function(groupName){
     this.currentGroup = groupName;
 }
 MistForge.Classes.SvgDrawer.Model.prototype.switchGroup = function(groupName){
+    console.log('Model.switchGroup("'+groupName+'")');
     this.currentGroup = groupName;
 }
 
 MistForge.Classes.SvgDrawer.Model.prototype.getGroupPosObj = function(groupName){
+    console.log('Model.getGroupPosObj("'+groupName+'")');
     var G = this.GroupsTab[groupName];
 
     if(G.Parent){

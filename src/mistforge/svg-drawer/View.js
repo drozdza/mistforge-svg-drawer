@@ -16,17 +16,21 @@ MistForge.Classes.SvgDrawer.View = function(viewName,viewCont,Project){
     this.currentObject = false;
 
     this.initCanvas = function(){
+        console.log('View.initCanvas()');
         this.Canvas = 2;
     }
 
     this.setCenter = function(x,y){
+        console.log('View.setCenter('+x+','+y+')');
         this.viewPoint.x = x;
         this.viewPoint.y = y;
     }
     this.zoom = function(zoom){
+        console.log('View.zoom('+zoom+')');
         this.viewPoint.zoom = zoom;
     }
     this.resize = function(){
+        console.log('View.resize()');
         var Cont = $(this.viewCont);
         if(Cont){
             this.viewPoint.w = Cont.width();
@@ -36,8 +40,8 @@ MistForge.Classes.SvgDrawer.View = function(viewName,viewCont,Project){
         }
     }
     this.draw = function(){
+        console.log('View.draw()');
         var O,o;
-        console.log('Draw!');
 
         for(o in this.ObjectsTab){
             O = this.ObjectsTab[o];
@@ -49,10 +53,12 @@ MistForge.Classes.SvgDrawer.View = function(viewName,viewCont,Project){
     }
 
     this.prepareObjPos = function(O){
+        console.log('View.prepareObjPos(O)'); console.log(O);
         var G = this.geoTab[ O.geoId ];
         O.GeoPos = {x:G.x, y:G.y, z:G.z, q:G.q};
     }
     this.prepareGroups = function(O){
+        console.log('View.prepareGroups(O)'); console.log(O);
         var G,g;
         for(g in O.GroupsTab){
             G = O.GroupsTab[g];
@@ -67,6 +73,7 @@ MistForge.Classes.SvgDrawer.View = function(viewName,viewCont,Project){
         }
     }
     this.findGroupInObject = function(O,name,from){
+        console.log('View.findGroupInObject(O,"'+name+'","'+from+'")'); console.log(O);
         var fr = from.split('|');
 
         if(typeof O.GroupsTab[ fr[0]+'|'+fr[1]+'|'+name ] != undefined){
@@ -76,7 +83,8 @@ MistForge.Classes.SvgDrawer.View = function(viewName,viewCont,Project){
         }
     }
 
-    this.countCoordObj function(A,B){
+    this.countCoordObj = function(A,B){
+        console.log('View.countCoordObj(A,B)'); console.log(A); console.log(B);
         var C={};
         C.x = A.x- -A.z*B.r * Math.cos((B.q- -A.q)/(180*Math.PI));
         C.y = A.y- -A.z*B.r * Math.sin((B.q- -A.q)/(180*Math.PI));
@@ -85,6 +93,7 @@ MistForge.Classes.SvgDrawer.View = function(viewName,viewCont,Project){
     }
 
     this.preparePoints = function(O){
+        console.log('View.preparePoints(O)'); console.log(O);
         var G,P,p;
         for(p in O.PointsTab){
             P = O.PointsTab[p];
@@ -94,6 +103,7 @@ MistForge.Classes.SvgDrawer.View = function(viewName,viewCont,Project){
         }
     }
     this.drawLines = function(O){
+        console.log('View.drawLines(O)'); console.log(O);
         console.log(O.GroupsTab);
         var L,l,D,SL,sl,d;
         for(l in O.LinesTab){
@@ -114,10 +124,12 @@ MistForge.Classes.SvgDrawer.View = function(viewName,viewCont,Project){
     }
 
     this.pointToString = function(pointName){
+        console.log('View.pointToString("'+pointName+'")');
         return '20,20 ';
     }
 
     this.init = function(viewName, viewCont, Project){
+        console.log('View.init("'+viewName+'", "'+viewCont+'", Project)');
         this.viewName = viewName;
         this.viewCont = viewCont;
         this.Project = Project;

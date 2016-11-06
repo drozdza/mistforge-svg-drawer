@@ -1,5 +1,6 @@
 
 MistForge.Classes.SvgDrawer.Model.prototype.setLine = function(lineName = false){
+    console.log('Model.setLine("'+lineName+'")');
     if(lineName === false)
         lineName = this.iLine++;
 
@@ -13,10 +14,13 @@ MistForge.Classes.SvgDrawer.Model.prototype.setLine = function(lineName = false)
     this.currentLine = lineName;
 }
 MistForge.Classes.SvgDrawer.Model.prototype.switchLine = function(lineName){
+    console.log('Model.switchLine("'+lineName+'")');
+
     this.currentLine = lineName;
 }
 
 MistForge.Classes.SvgDrawer.Model.prototype.startLineAtPoint = function(){
+    console.log('Model.startLineAtPoint()');
     var L = this.LinesTab[ this.currentLine ];
     var pointName = this.currentPoint;
 
@@ -31,6 +35,7 @@ MistForge.Classes.SvgDrawer.Model.prototype.startLineAtPoint = function(){
 }
 
 MistForge.Classes.SvgDrawer.Model.prototype.addPointToLine = function(lineType){
+    console.log('Model.addPointToLine("'+lineType+'")');
     var L = this.LinesTab[ this.currentLine ];
     var pointName = this.currentPoint;
 
@@ -45,6 +50,7 @@ MistForge.Classes.SvgDrawer.Model.prototype.addPointToLine = function(lineType){
 }
 
 MistForge.Classes.SvgDrawer.Model.prototype.closeLine = function(){
+    console.log('Model.closeLine()');
     var L = this.LinesTab[ this.currentLine ];
     if(L.subLines.length == 0){
         L.subLines[0] = {Z:true, T:[]};
@@ -54,6 +60,7 @@ MistForge.Classes.SvgDrawer.Model.prototype.closeLine = function(){
 }
 
 MistForge.Classes.SvgDrawer.Model.prototype.openLine = function(){
+    console.log('Model.openLine()');
     var L = this.LinesTab[ this.currentLine ];
     if(L.subLines.length == 0){
         L.subLines[0] = {Z:false, T:[]};

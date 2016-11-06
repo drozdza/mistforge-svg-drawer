@@ -1,5 +1,6 @@
 
 MistForge.Classes.SvgDrawer.Model.prototype.setPoint = function(pointName = false,pointData){
+    console.log('Model.setPoint("'+pointName+'", pointData)'); console.log(pointData);
     if(pointName === false)
         pointName = this.iPoint++;
 
@@ -18,10 +19,12 @@ MistForge.Classes.SvgDrawer.Model.prototype.setPoint = function(pointName = fals
     this.currentPoint = pointName;
 }
 MistForge.Classes.SvgDrawer.Model.prototype.switchPoint = function(pointName){
+    console.log('Model.switchPoint("'+pointName+'")');
     this.currentPoint = pointName;
 }
 
 MistForge.Classes.SvgDrawer.Model.prototype.getPointRadObjRaw = function(groupPosObj,x,y){
+    console.log('Model.getPointRadObjRaw(groupPosObj, '+x+', '+y+')'); console.log(groupPosObj);
     var vX = groupPosObj.x - x;
     var vY = groupPosObj.y - y;
 

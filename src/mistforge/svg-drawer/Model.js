@@ -18,20 +18,24 @@ MistForge.Classes.SvgDrawer.Model = function(modelName,Project){
     this.currentSubLine = false;
 
     this.getName = function(){
+        console.log('Model.getName()');
         return this.modelName;
     }
 
-    this.setObjectUse = function(view,object){
-        if(typeof this.usedInObjects[view] == 'undefined')
-            this.usedInObjects[view] = {};
-        this.usedInObjects[view][object] = true;
+    this.setObjectUse = function(viewName, objectName){
+        console.log('Model.setObjectUse("'+viewName+'", "'+objectName+'")');
+        if(typeof this.usedInObjects[viewName] == 'undefined')
+            this.usedInObjects[viewName] = {};
+        this.usedInObjects[viewName][objectName] = true;
     }
-    this.unsetObjectUse = function(view,object){
-        delete(this.usedInObjects[view][object]);
-        if(objectEmpty(this.usedInObjects[view]))
-            delete(this.usedInObjects[view]);
+    this.unsetObjectUse = function(viewName, objectName){
+        console.log('Model.unsetObjectUse("'+viewName+'", "'+objectName+'")');
+        delete(this.usedInObjects[viewName][objectName]);
+        if(objectEmpty(this.usedInObjects[viewName]))
+            delete(this.usedInObjects[viewName]);
     }
     this.updateObjects = function(){
+        console.log('Model.updateObjects()');
         for(var v in this.usedInObjects){
             var V = this.Project.view(v);
             for(var o in this.usedInObjects[v])
@@ -42,6 +46,7 @@ MistForge.Classes.SvgDrawer.Model = function(modelName,Project){
 
 
     this.init = function(modelName,Project){
+        console.log('Model.init("'+modelName+'", Project)');
         this.modelName = modelName;
         this.Project = Project;
     }

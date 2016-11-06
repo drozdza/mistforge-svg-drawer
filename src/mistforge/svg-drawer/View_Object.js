@@ -1,5 +1,6 @@
 
 MistForge.Classes.SvgDrawer.View.prototype.setObject = function(objectName){
+    console.log('View.setObject("'+objectName+'")');
     if(objectName === false)
         objectName = this.iObject++;
 
@@ -16,14 +17,17 @@ MistForge.Classes.SvgDrawer.View.prototype.setObject = function(objectName){
     this.currentObject = objectName;
 }
 MistForge.Classes.SvgDrawer.View.prototype.switchObject = function(objectName){
+    console.log('View.switchObject("'+objectName+'")');
     this.currentObject = objectName;
 }
 
 MistForge.Classes.SvgDrawer.View.prototype.addObjectToGeoPoint = function(geoId){
+    console.log('View.addObjectToGeoPoint("+geoId+")');
     this.ObjectsTab[ this.currentObject ].geoId = geoId;
 }
 
 MistForge.Classes.SvgDrawer.View.prototype.addModelToObject = function(modelName, motherGroup = false){
+    console.log('View.addModelToObject("'+modelName+'", "'+motherGroup+'")');
     var x,O = this.ObjectsTab[ this.currentObject ];
     var modelI=0;
     while(typeof O.ModelsTab[modelName+'|'+modelI] != 'undefined') ++modelI;
@@ -47,6 +51,7 @@ MistForge.Classes.SvgDrawer.View.prototype.addModelToObject = function(modelName
 }
 
 MistForge.Classes.SvgDrawer.View.prototype.getObjectPosObj = function(objectName){
+    console.log('View.getObjectPosObj("'+objectName+'")');
     var O = this.ObjectsTab[ objectName ];
 
     // jeśli mamy tablicę geometrii:
@@ -57,6 +62,7 @@ MistForge.Classes.SvgDrawer.View.prototype.getObjectPosObj = function(objectName
 }
 
 MistForge.Classes.SvgDrawer.View.prototype.updateModelInObject = function(M, objectName = false){
+    console.log('View.updateModelInObject(M, "'+objectName+'")'); console.log(M);
     var mName,O;
     if(objectName)  O = this.ObjectsTab[ objectName ];
         else        O = this.ObjectsTab[ this.currentObject ];
@@ -74,6 +80,7 @@ MistForge.Classes.SvgDrawer.View.prototype.updateModelInObject = function(M, obj
     // console.log(Model);
 }
 MistForge.Classes.SvgDrawer.View.prototype.deleteModelFromObject = function(M, objectName = false){
+    console.log('View.deleteModelFromObject(M, "'+objectName+'")'); console.log(M);
     // ....
 }
 
