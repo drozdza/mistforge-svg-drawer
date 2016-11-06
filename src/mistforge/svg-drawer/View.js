@@ -64,9 +64,11 @@ MistForge.Classes.SvgDrawer.View = function(viewName,viewCont,Project){
             G = O.GroupsTab[g];
             if(!G.Parent){
                 // grupa powinna mieć jakieś oddalenie
-                G.x = O.GeoPos.x- -O.GeoPos.z*G.r*Math.cos((G.q- -O.GeoPos.q)/(180*Math.PI));
-                G.y = O.GeoPos.y- -O.GeoPos.z*G.r*Math.sin((G.q- -O.GeoPos.q)/(180*Math.PI));
-                G.z *= O.GeoPos.z;
+                G.C = {};
+                G.C.x = O.GeoPos.x- -O.GeoPos.z*G.r*Math.cos((G.q- -O.GeoPos.q)/(180*Math.PI));
+                G.C.y = O.GeoPos.y- -O.GeoPos.z*G.r*Math.sin((G.q- -O.GeoPos.q)/(180*Math.PI));
+                G.C.z = G.z*O.GeoPos.z;
+                G.C.q = 0;
             }else{
                 console.log('View.prepareGroups(): Liczmy po rodzicach');
             }
@@ -88,8 +90,9 @@ MistForge.Classes.SvgDrawer.View = function(viewName,viewCont,Project){
         var C={};
         C.x = A.x- -A.z*B.r * Math.cos((B.q- -A.q)/(180*Math.PI));
         C.y = A.y- -A.z*B.r * Math.sin((B.q- -A.q)/(180*Math.PI));
-        C.z = A.z*B.z;
-
+        C.z = A.z;
+        if(typeof B.z != 'undefined') C.z *=B.z;
+        return C;
     }
 
     this.preparePoints = function(O){
@@ -99,7 +102,6 @@ MistForge.Classes.SvgDrawer.View = function(viewName,viewCont,Project){
             P = O.PointsTab[p];
             G = this.findGroupInObject(O,P.G,p);
             P.C = this.countCoordObj(G.C,P);
-            console.log(P.C);
         }
     }
     this.drawLines = function(O){
@@ -111,11 +113,11 @@ MistForge.Classes.SvgDrawer.View = function(viewName,viewCont,Project){
             D = '';
             for(sl in L.subLines){
                 SL = L.subLines[sl];
-                D += 'M '+this.pointToString(SL.M);
+                D += 'M '+this.pointToString(O, l, SL.M);
 
                 for(d in SL.D){
                     if(SL.D[d].T=='L')
-                        D += 'L '+this.pointToString(SL.M);
+                        D += 'L '+this.pointToString(O, l, SL.D[d].P);
                 }
                 if(SL.Z) D +='z';
             }
@@ -123,9 +125,25 @@ MistForge.Classes.SvgDrawer.View = function(viewName,viewCont,Project){
         }
     }
 
-    this.pointToString = function(pointName){
-        console.log('View.pointToString("'+pointName+'")');
-        return '20,20 ';
+    this.pointToString = function(O, groupName, pointName){
+        console.log('View.pointToString(O, "'+pointName+'")'); console.log(O);
+        var P = this.findPointInObject(O, groupName, pointName);
+
+        return P.C.x.toFixed(2)+' '+P.C.y.toFixed(2)+' ';
+    }
+    this.findPointInObject = function(O, groupName, pointName){
+        console.log('View.findPointInObject(O, "'+groupName+'", "'+pointName+'")');
+        var gnTab = groupName.split('|');
+        var fullName = gnTab[0]+'|'+gnTab[1]+'|'+pointName
+        if(typeof O.PointsTab[fullName] != 'undefined'){
+            return O.PointsTab[fullName];
+        }else{
+            if(isNaN(pointName))
+                for(var i in O.PointsTab)
+                    if(i.split('|')[2] == pointNmae)
+                        return O.PointsTab[i];
+        }
+        return false;
     }
 
     this.init = function(viewName, viewCont, Project){
